@@ -1,0 +1,67 @@
+# Compensation:
+
+"Para que possamos realmente usar essas informações, precisamos que você nos
+forneça informações de qualidade. Para cada imagem que lhe enviarmos, se você identificar corretamente se Kyle está na imagem, e puder nos dizer cinco coisas que estão em cada imagem, nós lhe daremos pontos"
+
+-> Posso usar isso como estratégia, depois deles enviarem as imagens, podemos analisar
+cada imagem e encontrar o Kyle, quando encontramos, podemos dizer 5 coisas que estão
+em cada imagem para marcar pontos mais cedo.
+
+
+----------------------
+The project to date:
+
+REKOGNITION SERVICE:
+	Esté é um serviço de reconhecimento de imagem para o qual você pode alimentar
+	imagens e pode fazer coisas como detectar rostos e compará-los com rostos que 		você treinou para reconher. Você também pode detectar rótulos para "ver" coisas
+
+	OBS:
+		- Provavelmente teremos que adicionar o rosto do Kyle para ser 		utilizado como comparação
+
+		- Onde ira ficar as imagens?
+		- Como enviar as imagens para serem analisadas.
+		- Como encontrar o kyle?
+
+
+TASK:
+	#IndexFacesAPI <---- !!
+	Uma coleção é um contêiner para faces persistentes detectadas pela API 		IndexFaces. Você pode optar por criar um contêiner para armazenar todos os 		rostos ou criar vários contêineres para armazenar rostos em grupos conforme sua 	escolha.
+
+	Consider:
+		# SearchFacesByImage <---- OPERATION 
+		You might create a collection to store SCANNED BADGE IMAGES using the
+		IndexFaces operation, which extracts faces and sotres them as 				searchable image vectors.
+		Quando um funcionário entra no prédio, uma imagem de seu rosto é 			capturada e enviada para a operation (SearchFacesByImage). Se a
+		correspondência de rosto produzir uma pontuação de similaridade 			suficientemente alta, o funcionário é imediamente aprovado.
+
+
+		# ExternalImageId <-- Rótulo
+		Quando você indexa seus rostos, o Rekognition cria um modelo do rosto 		que você pode usar para comparar outros rostos. Ao fazer isso, você 		pode associar um ExternalImageId que pode ser considerado um rótulo.
+
+	
+		# Feed images of Kyle's face into Rekognition
+		Portanto, se alimentarmos imagens do rosto de Kyle no Rekognition e 		espeficarmos o ExternalImageId como "Kyle", quando mostramos uma imagem 		posteriormente e ele detecta um rosto na imagem que é semelhante a um 		rosto em nossa coleção, podemos recuperar o ExternalImageId do rosto 		semelhante que nos dirá que encontrou Kyle na imagem.
+
+- Oque sabemos:
+	- Existe uma função no Lambda que treina o Rekognition para aprender como é o 	rosto de Kyle (Como posso reproduzir isso)
+
+	- Um S3 bucket (trainingbucket) com imagens de training que nós podemos usar 	para criar nossa Rekognition collection. (Como posso reproduzir isso)
+
+	- Um S3 bucket (playerbucket) que é onde o GAMEDAY VAI ENVIAR AS IMAGENS para 	ANALISAR.
+
+	OBS:
+		Aparentemente vai ter um "StarterCode" Lambda function, ela vai ser 		utilizada para a gente ensinar o Rekognition sobre o rosto do Kyle
+
+		Uma vez feito isso, iremos criar um novo Lambda para analisar as 		imagens que seram enviadas e encontrar o Kyle, precisaremos conectar 		algo para invocar o Rekognition quando criamos objetos em seu bucket do 		S3.
+
+
+Oque fazer para tentar reproduzir:
+
+	- Criar uma função Lambda que ensina o Rekognition o rosto que ele tem que 	utilizar para encontar nas outras imagens. (Alimentar o Rekogniton com ela) 	(Adicionar Labels quando enviar para o Rekognition)
+
+	- S3 Bucket que tem as imagens de Trainning
+	- S3 Bucket que vou enviar as imagens para comparar
+	
+	- Outra função Lambda que vai ser invocada quando colocarmos uma imagem no S3 	  bucket, ela vai ser triggada e vai usar a imagem para comparar com a do rosto 	  que tem  Labels, se o rosto for igual, ela enviara um SNS
+
+	Vamos.
