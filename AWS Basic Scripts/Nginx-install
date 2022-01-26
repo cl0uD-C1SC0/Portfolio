@@ -1,0 +1,6 @@
+sudo yum install nginx
+sudo vi /etc/nginx/nginx.conf
+    SET: worker_processes auto
+
+systemctl start nginx
+systemctl enable nginx

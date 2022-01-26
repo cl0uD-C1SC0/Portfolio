@@ -1,0 +1,52 @@
+Problema 1: (Amazon AMI Linux 2)
+
+	- Instalei httpd
+	- Instalei php
+	- Instalei mysqld-server (não recomendado)
+	- Testei a aplicação
+		* A aplicação apresentava o mesmo erro...
+		* SOLUÇÃO QUE ARRUMEI: ATUALIZEI O PHP DE 5.4 PARA 7.2
+			* Comando: amazon-linux-extras install php7.2
+
+admin
+tpl<FuRvH5
+bancodedados
+
+
+	Oque eu fiz antes:
+
+	amazon-linux-extras install epel -y
+	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+	yum --enablerepo=epel,remi install httpd -y
+	systemctl enable httpd && systemctl start httpd
+	* testei a aplicação
+
+	# MYSQL:
+	rpm -Uvh  https://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+	yum install mysql-server -y
+	systemctl enable mysqld.service && systemctl start mysqld.service
+	grep "A temporary password" /var/log/mysqld.log  | tail -n1
+	mysql_secure_installation
+
+	# PHP:
+
+	yum --enablerepo=epel,remi-php74 install php -y
+	yum --enablerepo=remi-php74 list php-* 
+	yum --enablerepo=remi-php74 install php-mysql php-xml php-xmlrpc php-soap php-gd -y
+
+	# Depois de instalar o PHP:
+
+	systemctl restart httpd.service
+	echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+
+	php -v
+	httpd -v
+	mysql -V
+
+	# se o php for versão inferior a 7:
+
+	amazon-linux-extras install php7.2
+
+	php -v
+
+	Teste:

@@ -1,0 +1,43 @@
+ Upload Content to S3 Bucket
+ Upload the index.html file to the bucket (replacing <BUCKET_NAME_PROVIDED> with the S3 bucket name listed on the lab page):
+
+# aws s3 cp index.html s3://<BUCKET_NAME_PROVIDED>
+ Create CloudFront OAI
+ Create a CloudFront origin access identity so it can get content from your S3 bucket on your behalf (replacing <YOUR_UNIQUE_STRING_HERE> with a random series of numbers):
+
+# aws cloudfront create-cloud-front-origin-access-identity --cloud-front-origin-access-identity-config CallerReference=<YOUR_UNIQUE_STRING_HERE>,Comment=MyOAI
+ Copy the Id and Etag in the output and paste them into a text file, as we'll need them later.
+
+ Modify S3 Policy File in Directory and Execute It Against S3 Bucket
+ Modify the provided policy_cloudfront.json file in the home directory of cloud_user and replace <OAI-ID> with the OAI ID retrieved as a result of the previous OAI creation command.
+
+ Execute this policy against the S3 website bucket (first changing to the home directory):
+
+cd 
+
+# aws s3api put-bucket-policy --bucket <BUCKET_NAME> --policy file://policy_cloudfront.json
+ Create CloudFront Distribution
+ Create a CloudFront distribution:
+
+# aws cloudfront create-distribution --origin-domain-name <BUCKET_NAME>.s3.amazonaws.com --default-root-object index.html
+ This will give you a lengthy output. Find and note/save the ETag and Id of the CloudFront distribution from within that returned JSON string, as you'll need them later to update it.
+
+ Get and Update the CloudFront Distribution Config
+ Get the CloudFront distribution config and filter out the distribution-specific part:
+
+# aws cloudfront get-distribution-config --id <CF_DIST_ID> | jq -r .DistributionConfig > dist-config.json
+ Modify the following properties in the newly created dist-config.json file:
+
+ OriginAccessIdentity under key Origin should be origin-access-identity/cloudfront/<OAI_ID> (don't forget to replace <OAI_ID> with the actual OAI ID).
+ PriceClass should be PriceClass_100.
+ ViewerProtocolPolicy should be redirect-to-https.
+ Update CloudFront Distribution with the Modified `dist-config.json` File
+ Update the CloudFront distribution with the dist-config.json file (replacing <DISTRIBUTION_ID> and <DISTRIBUTION_ETAG> with the values noted earlier):
+
+# aws cloudfront update-distribution --id <DISTRIBUTION_ID> --distribution-config file://dist-config.json --if-match <DISTRIBUTION_ETAG>
+ Test and Verify
+ Browse or curl the CloudFront distribution URL to ensure your website is working:
+
+# curl <CLOUDFRONT_DIST_URL>
+ Head to the AWS console to verify the changes you made are in place. You can also do this by issuing the AWS CloudFront GetDistribution CLI command.
+
