@@ -1,0 +1,64 @@
+#
+#
+#
+
+Aplicação JAVA (Mordernizando e Migrando Banco de dados)
+
+
+Instale o App2Container na instância que tem a aplicação JAVA Rodando:
+
+curl -o AWSApp2Container-installer-linux.tar.gz https://app2container-release-us-east-1.s3.us-east-1.amazonaws.com/latest/linux/AWSApp2Container-installer-linux.tar.gz
+tar xvf AWSApp2Container-installer-linux.tar.gz
+ ./install.sh
+app2container help
+
+- Crie um Bucket S3 ou selecione um existe para
+armazenar os artifacts
+
+- inicie o app2Container
+- directory path o do desafio ou padrão
+- Instance profile o do desafio ou crie uma
+- AWS Region o do desafio ou padrão
+- Report usage metrics: N 
+- Default left three questions
+
+
+verifique as aplicações que estão rodando no servidor de JAVA
+
+- app2container inventory
+
+analise sua app: 
+
+- app2container analyze --application-id appid
+
+
+## DEPLOY TO ECS ## 
+
+- app2container containerize --application-id appid
+
+# Verificar se criou uma DOCKER IMAGE
+
+docker images 
+
+# EDIT O ARQUIVO de deployment.json
+
+vim /root/app2container/appid/deployment.json
+# VERIFIQUE SE EM "ecsParameters" "createEcsArtifacts: true"
+# VERIFIQUE SE EM "deployTarget": "FARGATE"
+
+# OBS # 
+Copie a VPC Target que você deseja enviar a aplicação mordenizada
+no deployment.json troque o vpcId pela vpcId que você copiou agora
+no deployment.json verifique se "enableFireLensLogging": está marcado como "false"
+
+
+# GERE O DEPLOYMENT PARA STACK:
+
+app2container generate app-deployment --application-id 
+
+# APLICAR O CLOUDFORMATION PARA MIGRAR TODA SUA INFRA MODERNIZADA:
+
+aws cloudformation deploy --template-file y/APP-ID/EcsDeployment/ecs-master.yml --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND --stack-name stack-name
+
+substitua os valores APPID e stack-name pelo seu valor
+

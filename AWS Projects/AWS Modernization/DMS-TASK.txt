@@ -1,0 +1,70 @@
+#
+#
+#
+Crie um DB Subnet group
+Selecione VPC Target e faça as configurações de boa.
+
+Crie um parameter group:
+postgres10
+unicorn-db-parameter-group
+
+Quando criar, selecione o parameter grup e clique em Editar
+procure no filter: session_replication_role > replica
+
+Crie um Target Database
+Engine options: PostgreSQL
+Version: PostgreSQL 10.15.-R1 (foi a versão escolhida no workshop)
+
+Configure Usuário e senha
+Crie um Database e selecione o parameter group anterior.
+
+
+# VÁ PARA O RDS
+# CRIE UMA REPLICATION SUBNET GROUP 
+    CRIE DEPOIS UMA REPLICATION INSTANCE
+    VPC: TARGET
+    PUBLICLY ACCESSIBLE: CHECKED
+
+# CRIE SOURCE AND TARGET ENDPOINTS:
+    SOURCE ENDPOINT:
+        SOURCE ENGINE: POSTGREE (WORKSHOP)
+        SERVER NAME: 10.0.0.140 (ADDRESS DO SERVIDOR)
+        PORT: 5432
+        SSL MODE: NONE
+        USER NAME: unicorn (workshop)
+        Password: awsrocks2021 (workshop)
+        Database Name: unicorn
+
+    Teste o Source endpoint com a replication instance
+    Repita os mesmo passos para target endpoint.
+        Selecione: Target Endpoint
+        Checkbox: Select RDS DB Instance
+        configuração de server name, port e entre outros (São valores do RDS)
+    Teste o Target Endpoint
+
+
+ # Replication Task:
+    Task identifier: replication-cdc
+    Replication instance: replication-instance
+    Source endpoint: source-postgre-endpoint
+    Target endpoint: target-postgre-endpoint
+    Migration Type: Migrate existing data and replicate ongoing changes
+
+
+# Quando a replica for feita, mude o Endpoint da aplicação:
+# Conecte-se na EC2
+# sudo su
+# nano /etc/environment
+    RDS_DB_NAME
+    RDS_USERNAME
+    RDS_PASSWORD
+    RDS_HOSTNAME     
+
+# para fazer environment variable changes active:
+    source /etc/environment
+
+# Reinicie o servidor Tomcat Webserver:
+    cd /usr/local/tomcat8/bin/
+    ./shutdown.sh
+    ./startup.sh
+    
