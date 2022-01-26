@@ -1,2 +1,2 @@
-# dale
-dale repository to my
+# REPOSITÓRIO DOS MEUS ARQUIVOS PARA ESTUDOS
+
