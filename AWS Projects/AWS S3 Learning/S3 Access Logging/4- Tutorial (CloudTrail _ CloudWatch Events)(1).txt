@@ -1,0 +1,40 @@
+Create a Lambdafunction (Arquivo: s3-DeleteBucketAutomatically.py)
+    Runtime: Python 3.7
+    Execution Role: Create a New role from AWS Policy templates
+    Role name.
+    Create function.
+    Scroll down to the function, and delete and put the s3-DeleteBucketAutomatically.py
+
+    Scroll down click in Save.
+    Create a Event for this Lambda.
+
+    Go to cloudwatch and go to cloudwatch events. 
+    
+    Event pattern: s3
+    Event Type: Bucket Level Operations
+    Specific Operataions(s): CreateBucket
+
+    Add a target:
+        LambdaFunction, Select lambda function created for delete.
+    
+    Scroll down, and config details.
+    Name.
+    Description.
+    State: Enabled.
+    Create. 
+    Test.
+
+
+    Give to the lambda function permission for delete bucket:
+    Go to IAM and Put this policy:
+        (Arquivo: LambdDelete-S3Bucket.json)
+    
+    Put name.
+    Description.
+    Create Policy.
+    Attach to the Lambda.
+    Go to Lambda Role
+    And attach the recently created policy to the lambda role (Created in creating lambda).
+    
+     
+

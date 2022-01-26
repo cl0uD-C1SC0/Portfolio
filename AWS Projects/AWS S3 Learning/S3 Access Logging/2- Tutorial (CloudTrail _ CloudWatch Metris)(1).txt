@@ -1,0 +1,17 @@
+Select CloudTrail log group.
+    Select: Actions
+        Select: Create Metric Filter
+        Put the Filter Pattern
+        Test.
+        Next
+
+Select the metric filter
+    Create an Alarm
+        Sum
+        1 minute
+        Static
+        Greater > threshold = 0
+        Treat missing data as good (not breaching threshold)
+        Setup e-mail notification.
+
+Test. 

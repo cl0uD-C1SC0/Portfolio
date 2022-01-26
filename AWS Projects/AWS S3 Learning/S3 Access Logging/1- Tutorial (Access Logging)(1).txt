@@ -1,0 +1,51 @@
+# Tutorial:
+    Create a bucket
+        name: bucket-access-logs
+        name: bucket-mainly
+
+
+    Go to: bucket-mainly 
+            Server access logging.
+                Enable
+                Target bucket: bucket-access-logs
+                Target prefix: bucket-
+                Save
+    
+    Pre-defined-group
+
+    Go to: bucket-access-logs
+                Pemissions
+                Network ACL
+                    Verify if the group has been added!
+
+Logs view:
+
+    First camp:
+            82cca07f9b24d78ba906... -> ID da Conta que logou
+            [12/Jan/2017:08:40:17 +0000]... -> Horário, Data e ano.
+            10.89.13.99... -> Endereço de origem.
+            arn:aws:iam::26777724...:user/??? -> Requester.
+            5734627642... -> Request ID 
+            REST.HEAD.BUCKET -> Operation 
+            - -> Hifen: Por causa que é uma operação de bucket 
+            "HEAD /wildguru1 HTTP/1.1" -> REQUEST URI
+
+            | 200 - - - -> HTTP STATUS
+            |        Nesse caso, deu 200, ou seja, sucesso.
+            |        o primeiro - = Error corde
+            |        o segundo - = bytes enviados
+            |        o terceiro - = tamanho do objeto
+            |17-> Time second and milisseconds
+            | 16 -> Tempo de processo
+            |
+            | OBS: Tudo isso é = 200 - - - 17 16
+
+            "-" -> Campo de referência (Refer field)
+
+            "AWS Console S3, aws-internal/3" -> é o user agent
+                OBS: Da onde veio.
+
+            - -> Versão 
+
+
+

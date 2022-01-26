@@ -1,0 +1,21 @@
+"CloudTrail provides visibility into user activity by recording API calls made
+on your account. CloudTrail records important information about each API call,
+including the name of the APi, the identity of the caller, the time of the API call, the
+request parameters, and the response elements returned by the AWs service.
+This information helps you to track changes made to your AWS resource and to
+troubleshoot operational issues." 
+
+CloudTrail S3 Logging: 
+        * Enabled when you switch on CloudTrail
+        * Captures specific APi calls made to S3 from your AWS account
+            * By default only supported bucket-level actions are captured
+            * Object level actions can be added by configuring an event selector
+            * Ideal for compliance and auditing
+
+Integration CloudTrail with CloudWatch
+
+    CloudWatch Logs: Monitor and alert on specific metrics as they occur
+    CloudWatch Events: Take a specific action (ie using Lambda) as events occur
+
+    Task 1: Crie um cloud Trail para o S3 bucket.
+
