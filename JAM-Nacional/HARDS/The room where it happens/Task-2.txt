@@ -1,0 +1,21 @@
+#
+#
+#
+Criar um Application Load Balancer para o traefik
+
+NOTE:
+    Listeners HTTP 80 e HTTP 8080
+
+TASK:
+
+- Crie um Application Load Balancer
+- Internet-facing
+- IPv4
+- Networking (VPC do ECS)
+    Subnets Públicas.
+- SG: ALB
+- Listeners and routing
+    Listener HTTP 8080 -> TG-8080
+    Listener HTTP 80 -> TG-80
+
+

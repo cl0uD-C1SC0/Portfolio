@@ -1,0 +1,33 @@
+#
+#
+#
+Este desafio pode conter multiplos erros e icognitas
+Portanto analise bem antes de efetuar essas possibilidades.
+
+
+Possibilidade 1:
+Arrume a política em linha para o CodePiepline. 
+Selecione a função do IAM do CodePipeline, clique em Add in line policy,
+selecione Json e substitua o conteúdo para:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Policy1",
+            "Effect": "Allow",
+            "Action": [
+                "codepipeline:PutJobFailureResult",
+                "codepipeline:PutJobSuccessResult"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+Possibilidade 2:
+Depois de ter colocado essa política em linha ou não.
+Talvez tenha algum problema na função do Lambda:
+
+o Código que pode resolver isso pode ser este:
+(lambda-codigo.py)

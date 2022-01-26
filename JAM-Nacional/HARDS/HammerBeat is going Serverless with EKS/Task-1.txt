@@ -1,0 +1,15 @@
+#
+# TASK 1:
+#
+
+1 - Acesse a EC2 instance usada como Bastion Host
+2 - Digite:
+
+#Atualizar o kubeconfig para o cluster atual:
+aws eks update-kubeconfig --name EKSCluster
+
+# Get list of all namespaces in Kubernetes cluster
+kubectl get namespaces
+
+# List all Namespaces with the details:
+kubectl describe namespaces

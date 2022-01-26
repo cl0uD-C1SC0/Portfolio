@@ -1,0 +1,17 @@
+#
+# Como bloquear acesso do usuario IAM no aws
+#
+
+Desabilitando IAM User credential:
+
+Procure pelo usuário que tenha acess key ID igual da task 1
+
+Vá para o usuário do IAM que você encontrou.
+Clique em Credenciais de Segurança ou (Security Credentials)
+Procure pela opção Chaves de Accesso ou Access Keys
+Clique em Tornar inativa ou Make Inactive.
+
+Desabilitando IAM root credential:
+Logue no console como ROOT
+Clique no canto superior direito no usuario
+Security Credentials > Credenciais do AWS IAM > Chaves de Acesso > Make Inactive.

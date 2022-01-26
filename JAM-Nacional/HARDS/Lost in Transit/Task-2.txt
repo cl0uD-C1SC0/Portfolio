@@ -1,0 +1,19 @@
+﻿#
+#
+#
+Ir em Transit Gateway
+Criar um Attachment no TGW para a VPC TST-VPC
+
+Criar a assoiação na Route table do Transit Gateway (CORE-TGW-RTB-01) para o Attachment do TGW
+
+Criar a propagation na RTB do TGW os itens criados nos passos anteriores
+
+Adicionar as rotas no RTB das subnets do TST-VPC e na DEV-PRIV-RTB-02
+
+Deletar o peering que existe atualmente
+
+TASK:
+
+The TEST VPC is not following the same standards as other VPC in the
+environment. It lacks internet access and connectivity to other VPCs.
+

@@ -1,0 +1,11 @@
+#
+#
+#
+Abra o CMD:
+    aws kinesis update-shard-count --stream-name <nome-do-kinesis> --target-shard-count <numero-que-o-jam-pede> --scaling-type UNIFORM_SCALING
+
+    Espere a task validar ou o update for concluido (monitore o kinesis)
+
+
+
+    Task 3 e 4 adicione um trigger no Lambda do kinesis. e faça oque eles pedem
