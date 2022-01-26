@@ -1,0 +1,11 @@
+Cheque os LOGS do pod. 
+kubectl logs deployment/pod-jam -n batches
+
+Cheque a IAM Role do EKS:
+aws iam get-role --role-name jam-challenge-eks-pod
+
+
+DICA:
+Logs are hinting at a permission issue when accessing the file on S3. 
+The company security guidelines enforce the use of IAM roles for 
+applications to access AWS services, and an IAM role has already been created for this pod.

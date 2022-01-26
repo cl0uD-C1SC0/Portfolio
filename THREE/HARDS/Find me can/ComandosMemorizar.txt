@@ -1,0 +1,14 @@
+GET LOGIN:
+
+https://your-domain/login?response_type=token&client_id=your-app-client-id&redirect_uri=your-callback-URL
+
+UPDATE-USER-ATTRIBUTES:
+
+aws cognito-idp admin-update-user-attributes --user-pool-id "value" --username "value" --user-attributes Name="custom:mission_name",Value="neptunespear" Name="custom:rank",Value="colonel" --region "region"
+
+
+GET-ID:
+aws cognito-identity get-id --identity-pool-id "identity-pool-id" --region "region" --logins cognito-idp."region".amazonaws.com/"user-pool-id"="id-token"
+
+GET-CREDENTIALS:
+aws cognito-identity get-credentials-for-identity --identity-id"identity-id" --region "region" --logins cognito-idp."region".amazonaws.com/"user-pool-id"="token-id"

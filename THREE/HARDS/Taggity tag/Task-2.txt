@@ -1,0 +1,24 @@
+Possível task 2:
+
+Se a IAM Role da task 1 não validar a task 2: 
+
+"Condition": {
+  "StringLike": {
+      "aws:RequestTag/key1": "*",
+      "aws:RequestTag/key2": "*"
+  },
+  "ForAllValues:StringEquals": {
+    "aws:TagKeys": [
+        "key1",
+        "key2"
+    ]
+  }
+}
+
+Substitua:
+"Condition": {
+    "StringNotLike": {
+         "aws:RequestTag/jam_testing": [
+                        "*"
+        ]
+    },

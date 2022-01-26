@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyLaunchEC2WitoutTags",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DeleteTags",
+                "ec2:CreateTags"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "aws:RequestTag/jam_testing": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "ForAllValues:StringEquals": {
+                    "aws:TagKeys": "jam_testing"
+                }
+            }
+        }
+    ]
+}

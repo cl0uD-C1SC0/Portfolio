@@ -1,0 +1,29 @@
+Acesse a EC2 instance pelo SSM ou cmd mesmo.
+Torne-se root
+vá para a pasta ec2-user ou a pasta que tenha o repositório para analisar.
+Instale o git-secrets
+no home do ec2-user (fora de outro diretorio)
+git clone https://github.com/awslabs/git-secrets.git
+cd git-secrets
+sudo make install
+# Instale os padroes da aws:
+git secrets --register-aws --global
+Digitalize o repo do codigo fonte:
+cd /home/ec2-user/sourcecode <- o sourcecode é oque o evento pede para analisar.
+git secrets --scan -r
+encontre a chave da API
+
+
+OBS:
+Talvez você tenha que instalar o git-secrets dentro
+do repositório mesmo:
+
+cd /home/ec2-user/sourcecode
+git secrets --install
+git secrets --register-aws ou git secrets --register-aws --global
+
+
+Command to scan:
+
+git secrets --scan -r /path/to/directory
+git secrets --scan -r /path/to/directory/*

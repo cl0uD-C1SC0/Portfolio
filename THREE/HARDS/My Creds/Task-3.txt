@@ -1,0 +1,23 @@
+#
+# Remediação 1
+#
+
+Sabemos qual usuario foi comprometido e agora
+precisamos limpar qualquer atividade que o invasor possa ter 
+feito para garantir que ele seja removido do nosso ambiente.
+
+Step 1:
+Comece examinando os usuários do IAM que podem não pertencer
+ao cliente como base na análise das duas tarefas anteriores.
+
+Oque pode ser:
+1 - Procurar pelas atividades que determinado iam user fez e reverte-las 
+EX: criou uma instance, vai la e desliga ela.
+
+2 - Podem existir varios usuarios que precisa ser revertido, e talvez
+quando ele fale para procurar pelo usuario que não pertence, ele fala do usuário ou
+usuários que encontramos na task 1 e 2 e reverter as configurações que eles fizeram ou ele fez.
+
+Não vejo outra possibilidade para essa task.
+
+

@@ -1,0 +1,32 @@
+Adicionar uma política em linha para o IAM Role com a Key JAM_TESTING e se o valor é sim ou não:
+TALVEZ A RESPOSTA DA TASK 1 SEJA: (Task-1.json)
+TALVEZ A RESPOSTA DA TASK 2 SEJA: (task-2.json)
+
+EX: 
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyLaunchEC2WitoutTags",
+            "Effect": "Deny",
+            "Action": [
+                "ec2:DeleteTags",
+                "ec2:CreateTags"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringNotLike": {
+                    "aws:RequestTag/jam_testing": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "ForAllValues:StringEquals": {
+                    "aws:TagKeys": "jam_testing"
+                }
+            }
+        }
+    ]
+}
