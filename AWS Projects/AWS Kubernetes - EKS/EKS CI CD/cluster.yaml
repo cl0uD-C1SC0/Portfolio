@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: EKS
+  region: us-east-1
+
+vpc:
+    id: "vpc-09f9ac75b78b3f120"
+    subnets:
+      public:
+        us-east-1a: { id: subnet-003811636b5d0e624 }
+        us-east-1b: { id: subnet-01ef0879e3ef5c058 }
+
+nodeGroups:
+  - name: WSI-WEB
+    instanceType: t2.small
+    desiredCapacity: 2
+    volumeSize: 80
+    ssh:
+      publicKeyname: eks-course
+

@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+    mapRoles: |
+      - rolearn: arn:aws:iam::accountid:role/eks-demo-app-kubectl (Essa role é do arquivo: iam-role-policy)
+        username: build
+        groups:
+          - system:masters
+      - rolearn: arn:aws:iam::acountid:role/demo-app-kubectl (arn of codebuild)
+        username: build
+        groups:
+          - system:masters
+      - groups:
+        - system:bootstrappers
+        - system:nodes
+        rolearn: arn:aws:iam::accountid:role/ci-cd-demo-eks-node-group (arn of nodegroup)
+        username: system:node:{PEC2PrivateDNSName}
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "521461"
