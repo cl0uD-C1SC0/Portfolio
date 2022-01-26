@@ -1,0 +1,21 @@
+﻿#
+#
+#
+1 - Navegar até o Console VPC
+2 - Clicar em "Transit Gateway route tables! e selecionar "Isolated-TGW-RTB-01" table
+3 - Clicar em "Routes" tab para o ISOLATED-TGW-RTB-01 Transit Gateway Route Table
+4 - Click em "Create Static Route" - estamos criando um blackhole routes for the DEV-VPC, TST-VPC and PRD-VPC CIDRs
+5 - Use 172.16.10.0/24 como CIDR e click em Blackhole checkbox e clique em Create Static Route
+6 - Repita o processo 4 e 5 para os outros cidrs:
+                        172.16.20.0/24
+                        172.16.30.0/24
+
+
+
+------------------------
+1 - Transit Gateway Route Tables
+2 - Selecione a route table Isolated
+3 - Clique em Routes e crie uma Rota estática para cada um desses CIDRS:
+			172.16.10.0/24 > BlackHole
+			172.16.20.0/24 > BlackHole
+			172.16.30.0/24 > BlackHole

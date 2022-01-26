@@ -1,0 +1,68 @@
+#
+#
+#
+1 - Create new user in the UserPool
+2 - Configure the UserPool App Client correctly so that it can generate the ID token
+3 - Use the Hosted UI or the AdminInitiateAuth CLI command to get the ID token
+4 - Verify if the user is in CONFIRMED state. 
+
+
+To validate this task:
+1 - You need to make sure that the user is in CONFIRMED state and can be used to obtain the ID token.
+2 - You will need to submit the username and password of the user you have create in the following format: username:password
+
+ANSWER:
+    username:password
+
+
+TASK VALIDATE:
+
+1 - Navigate to the Users and Groups under General settings tab.
+2 - The Users tab in the Users and groups tab has Create user button, click it.
+3 - When you choose Create user, a Create user form appers, which you can use to enter ifnormation about the new user.
+4 - Enter a user name (COPY the name)
+5 - Select Email to send an invitation to this new user option.
+6 - Untick "Mark phone number as verified?" option 
+7 - Provide an Email Address in the Email text field and select the option Mark email as verified.
+
+CONFIGURE APP CLIENT:
+1 - On the App integration tab, click on App client settings. 
+2 - For Enabled Identity providers, tick mark Cognito User Pool
+3 - Enter the Callback URLs you want, separated by commas. For eg: https://example.com
+4 - Under OAuth 2.0, select Implicit grant (required) and Authorization code grant
+5 - For Allowed OAuth Scopes, select all the scopes. 
+6 - Save changes
+
+
+OBTAINING TOKENS USING HOSTED UI:
+
+1 - Select Choose domain name.
+
+2 - On the Domain name page, type a domain prefix and save changes. Make a note of the complete domain address. [Check availability option may not work at the momment, please
+save the changes directly. You need to make sure that the domain is unique. If you get an error, try putting a unique domain name.]
+
+3 - Choose Save changes
+
+4 - You can view the hosted UI sign-in webpage with the following URL where response_type=token. After a successful sign-in, Amazon Cognito returns user pool tokens to your web browser's address bar
+
+https://your-domain/login?response_type=token&client_id=your-app-client-id&redirect_uri=your-callback-URL
+
+VALUES:
+your-domain = You will find the domain name Domain name section under App integration. FORMAT: your-domain.auth.ap-south-1.amazoncognito.com
+
+app-client = You will find the Client ID in App Client section under General settings.
+
+Callback/RedirectURL = You will find the callback/Redirect Url in the App integration section under App client settings. It is present in Callback URL(s)
+
+
+OBAINING TOKENS USING HOSTED CLI:
+
+First run AdminInitiateAuth command:
+
+aws cognito-idp admin-initiate-auth --user-pool-id "user-pool-id" --client-id "client-id" --auth-flow ADMIN_NO_SRP_AUTH --auth-parameters USERNAME="username",PASSWORD="password" --region "region" --region "region"
+
+YOU WIL THEN GET A " NEW_PASSWORD_REQUIRED" challenge which you need to answer using AdminRespondToAuthChallenge command:
+
+aws cognito-idp admin-respond-to-auth-challenge --user-pool-id "user-pool-id" --client-id "client-id" --challenge-name NEW_PASSWORD_REQUIRED --challenge-responses NEW_PASSWORD="value",USERNAME="username" --session "value" --region "region"
+
+CHECK THE USER IS IN CONFIRMED STATE.

@@ -1,0 +1,19 @@
+#
+#
+#
+
+Your task is to configure the Identity pool correctly so that the user that you created in the first task can get temporary
+AWS Credentials and can access the object in the S3 bucket that contains the coordinates. Further, you need to create the custom mappgins betwenn principalTags and user attributtes.
+
+TASK:
+    - Go to Cognito Console
+    - Click on Identity Pool of Event
+    - In the top-right corner of the Dashboard page, click in Edit Identity pool
+    - Scroll down and select Authentication providers
+    - Click on Cognito as authentication
+    - Provide UserPool id and AppClientID
+    - Scroll down again and select: Attributes for access control > Choose > custom attribute mappings > VALUES:
+        KEY: rank VALUE: custom:rank
+        KEY mission VALUE: custom:mission_name
+
+    - Save

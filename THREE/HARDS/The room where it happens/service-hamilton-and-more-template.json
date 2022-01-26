@@ -1,0 +1,23 @@
+{
+    "cluster": "cluster-name",
+    "serviceName": "service-name",
+    "taskDefinition": "task-definition-name",
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-id",
+                "subnet-id"
+            ],
+            "securityGroups": [
+                "sg-id"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    },
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    }
+}
