@@ -1,0 +1,75 @@
+# Como utilizar o AUTOSCALING nos seus clusters.
+-------------------------------
+# Pré-requisitos:
+    - Tenha um Cluster do Kubernetes existente.
+    - Um provedor de OIDC do IAM existente para o cluster (Como criar um: https://docs.aws.amazon.com/pt_br/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)
+    - Grupo de nós com etiquetas do AutoScaling (TAG)
+
+            KEY: k8s.io/cluster-autoscaler/<cluster-name> VALOR: owned
+            KEY: k8s.io/cluster-autoscaler/enabled VALOR: TRUE
+
+    - Criar uma política e uma função do IAM
+        .1 Crie uma política do IAM (Arquivo: cluster-autoscaler-policy.json)
+        .1-1 Crie a política com o comando a seguir. 
+
+            aws iam create-policy \
+                --policy-name AmazonEKSClusterAutoscalerPolicy \
+                --policy-document file://cluster-autoscaler-policy.json 
+
+        OBS: ANOTE O ARN QUE FOR RETORNADO NO RESULTADO.
+
+    - Execute o comando a seguir. 
+
+        eksctl create iamserviceaccount \
+            --cluster=<nome-do-cluster \
+            --namespace=kube-system \
+            --name=cluster-autoscaler \
+            --attach-policy-arn=<ARN-DA-ETAPA-ANTERIOR>
+            --override-existing-serviceaccounts \
+            --approve
+    
+# IMPLANTAR O CLUSTER AUTOSCALER 
+
+    1. Implante o Cluster Autoscaler. 
+
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+
+    2. Anote a conte de serviço cluster-autoscaler com o ARN da função do IAM criada por você anteriormente.
+
+    kubectl annotate serviceaccount cluster-autoscaler \
+        -n kube-system \
+        eks.amazonaws.com/role-arn=arn:aws:iam::<ACCOUNT-ID>:role/AmazonEKSClusterAutoscalerPolicy
+
+    3. Corrija a implantação para adicionar a anotação cluster-autoscaler.kubernetes.io/safe-to-evict aos pods do cluster AutoScaler,
+    com o comando a seguir:
+
+    kubectl patch deployment cluster-autoscaler \
+        -n kube-system \
+        --patch-file .\test.json
+
+    4. Edite a implantação do Cluster AutoScaler:
+
+    kubectl -n kube-system edit deployment.apps/cluster-autoscaler
+
+    (PARA EDITAR: VEJA A IMAGEM: edit.png)
+    (NÃO APERTE TAB PARA FAZER A INDENTAÇÃO, UTILIZE A TECLA 'ESPAÇO')
+
+    Salve e feche o arquivo para aplicar as alterações. 
+
+    ------------------------------------
+    5. Abra a página (https://github.com/kubernetes/autoscaler/releases) do Cluster AutoScaler em um navegador da Web e encontra a versão
+    mais recente do Cluster AutoScaler que corresponde às versões principal e secundária do Kubernetes do cluster. Por exemplo, se a versão do
+    kubernetes do cluster fo 1.21, localize a ver~soa mais recente do cluster auscaler que comece com 1.21. Registre o número da versão semântica (1.21.n)
+    dessa versão para usar na próxima etapa.
+
+    6. Defina a tag de imagem do Cluster AutoScaler como a versão que você registrou na etapa anterior com o comando a seguir. Substitua 1.21.n pelo seu 
+    próprio valor:
+
+    kubectl set image deployment cluster-autoscaler \
+        -n kube-system \
+        cluster-autoscaler=k8s.gcr.io/autoscaling/cluster-autoscaler:v1.21.n
+
+    -------------------------------------------------------
+# VISUALIZE OS LOGS DO CLUSTER AUOSCALER
+
+    kubectl -n kube-system logs -f deployment.apps/cluster-autoscaler
