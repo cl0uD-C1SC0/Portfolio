@@ -1,0 +1,17 @@
+<?xml version="1,0" enconding="UTF-8">
+<AccessControlPolicy xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <Owner>
+      <ID>f6f1797b66cb4162fb84237c22b560690377b15769406f4302405110000000000</ID>
+      <DisplayName>owner-display-name</DisplayName>
+    </Owner>
+<AccessControlList>
+  <Grant>
+    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:type="Canonical User">
+      <ID>f6f1797b66cb4162fb84237c22b560690377b15769406f4302405110000000000</ID>
+      <DisplayName>display-name</DisplayName>
+    </Grantee>
+    <Permission>FULL_CONTROL</Permission>
+   </Grant>
+  </AccessControlList>
+</AccessControlpolicy>  

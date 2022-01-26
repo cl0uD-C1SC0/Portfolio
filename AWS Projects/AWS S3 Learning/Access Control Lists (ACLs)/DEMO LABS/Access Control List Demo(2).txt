@@ -1,0 +1,15 @@
+1 - Crie um bucket 
+    2- Dentro do bucket crie uma pasta
+        3- Dentro da pasta coloque um arquivo
+
+2 - Volte para o S3
+3 - Clique no seu Bucket
+
+    OBS: Por padrão, a ACL bloqueia todo o acesso ao publico no bucket
+
+4- Para permitir o bucket ser acessado publicamente, entre nele
+5 - permissões
+6 - Torne ele público. 
+
+    OBS: O Bucket está público e as pastas também!
+
