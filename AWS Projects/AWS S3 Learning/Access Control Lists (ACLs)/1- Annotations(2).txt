@@ -1,0 +1,27 @@
+What Are ACL's 
+    * Access Control List are XML resource policies used to grant access on both buckets and objects
+    * Each bucket and object has an ACL attached to it as a sub-resource that defines the permissions 
+    * The default ACL grants the resource owner full control over the object
+
+ACL Features
+    * Can be used only to grant permissions to AWS accounts and pre-defined groups
+    * Cannot grant permissions to individual users
+    * Can only grant basic read/write permissions
+    * Cannot grant conditional access
+    * Cannot grant deny permissions 
+
+    -> Defined in AWS using XML: 
+            (Arquivo: Defined.XML)
+
+    -> Owner shows the <ID> element which is the account owner (expressed as their canocial ID)
+    -> Grant shows the <Grantee> element that is either the AWS account or predefined group the
+    permission will be granted to and the <Permission>
+
+    Canned ACL's: 
+        - Canned ACL's are list of predefined grants that can be used to set common permissions to grantees
+
+        - Canned ACL's are commonly used when using the CLI:
+            aws s3 cp me.jpg s3://acloudguru/images/public --acl public-read
+            aws s3 cp me2.jpg s3://acloudguru/images/public --acl public-read --profile wildguru --region eu-west-1
+            aws s3 cp me3.jpg s3://aclouduguru/images/public --acl authenticated-read --profile wildguru --region e-west-1
+            
