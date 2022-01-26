@@ -1,0 +1,28 @@
+#
+# Stealth:S3/ServerAccessLoggingDisabled
+#
+#
+EVENT DETAILS:
+    "Amazon S3 Server Access Logging was disabled for S3 bucket guardduty-example-finance-455621539559-us-west-2 by 
+    GuardDuty-Example-Compromised2-Simulated calling PutBucketLogging. 
+    This can lead to lack of visibility into actions taken on the affected S3 bucket and its objects if an event occurs."
+
+MOTIVO:
+    Um suposto IP address fez uma chamada de S3 API, PutBucketLogging, no qual desativa o Server Access Logging.
+    Quando o GuardDuty faz a chamada: Stealth:S3/ServerAccessLoggingDisabled
+    Um EventBridge Rule é acionado com o evento Pattern: 
+        {
+            "source": ["aws.guardduty"],
+            "detail": {
+                "type": ["Policy:S3/BucketBlockPublicAccessDisabled", "Stealth:S3/ServerAccessLoggingDisabled"]
+            }
+        }
+
+    OBS: No caso desse Event Pattner, ele pega duas chamada de API do GuardDuty
+                        Policy:S3/BucketBlockPublicAccessDisabled E
+                        Stealth:S3/ServerAccessLoggingDisabled
+
+    Quando o EventBridge é acionado ele envia um SNS com o Input Transformer
+
+    1 -: {"account":"$.detail.accountId","gdid":"$.detail.id","region":"$.detail.region","userName":"$.detail.resource.accessKeyDetails.userName"}
+    2 -: "GuardDuty Finding | ID:<gdid>: An AWS S3 related API operation was invoked by user (userName: <userName>) in account <account> . This activity seems suspicious. Please investigate with the user to check if this was expectated behaviour. Go to https://console.aws.amazon.com/guardduty/home?region=<region>#/findings?macros=current&fId=<gdid>"
