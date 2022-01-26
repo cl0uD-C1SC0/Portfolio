@@ -1,0 +1,20 @@
+ANALISAR UMA POLÍTICA COM IAM ACCESS ANALYZER:
+
+CLI:
+OBS: Tenha a política em .json para analisar e tenha a correta indentação:
+
+comando:
+aws accessanalyzer validate-policy --policy-type (IDENTITY_TYPE, RESOURCE_POLICY, SERVICE_CONTROL_POLICY) --policy-document file://path-to-file/example.json
+aws accessanalyzer validate-policy --policy-type IDENTITY_TYPE --policy-document file://identity-polices/identity-policy01.json
+aws accessanalyzer validate-policy --policy-type RESOURCE_POLICY --policy-document file://resource-policies/resource-policy01.json
+aws accessanalyzer validate-policy --policy-type SERVICE_CONTROL_POLICY --policy-document file://service-policie/service-policy01.json
+
+IDENTITY_POLICY > Policy que é aplicada a um Usuario, grupo or role 
+RESOURCE_POLICY > Policy que é aplicada a um Recurso (Amazon S3 buckets, Amazon SQS, etc...)
+SERVICE_CONTROL_POLICY > SCPs são um tipo de política organizacional que você pode usar para gerenciar permissões em sua organização. (Ex: Essa policy não suporta um Principal.)
+
+CRIAR UM ANALYZER COM CLI:
+aws accessanalyzer create-analyzer --type ACCOUNT --analyzer-name nome-do-analyzer
+ANALYZER_ARN=$(aws accessanalyzer list-analyzers --query "analyzers[?status=='ACTIVE' && type=='ACCOUNT'].arn | [0]" --output text)    
+
+
