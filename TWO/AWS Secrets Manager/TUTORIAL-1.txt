@@ -1,0 +1,36 @@
+#
+# Como criar uma Secret no AWS Secret Manager
+#
+
+1 - Vá para o console do Secret Manager
+2 - Clique em Store a new Secret
+3 - Para Secret Type: Choose Other Type of secret
+    b - Key/Value = Key: MyPassword, Value: SecretPassword
+    c - Encryption key (Default)
+    d - Next
+4 - Secret Name: nome/nome 
+5 - Disable Automatic rotation (Isso serve para: É o processo de peridiocamente atualizar a secret. Quando você rotaciona uma secret
+você atualiza as credenciais de ambos da secret do banco de dados ou serviço)
+6 - Na página de Review você você ver o Sample Code (Código de exemplo para dar retrieve em uma secret do Secrets Manager).
+
+RETRIEVE A SECRET WITH CLI:
+    aws secretsmanager get-secret-value --secret-id name/name
+
+
+# DECRYPT WITH CMK Customer Key KMS
+Testei uma função lambda com CMK que eu criei 
+e utilizei o código providenciado pelo Secrets Manager para dar retrieve. 
+Funcionou Ok! 
+Porém, ele mandava eu atualizar os serviços que usavam essa chave com o novo arn.
+
+
+OBS: 
+    Modulo 2 possiveis erros:
+        Permissões no CMK
+        Permissão para o Lambda dar retrieve
+        Return errado. 
+
+
+OBS:
+    https://www.youtube.com/watch?v=tMatmbyDvG0 <- video muito bom utilizando secrets manager + API KEY
+    
