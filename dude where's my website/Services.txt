@@ -1,0 +1,10 @@
+Service a static website from S3
+Running a Flask WebApp on EC2
+Path-Based Routing to serve images from a different host
+
+
+
+-=-
+
+Lembro que no site estático do S3 ele se conectava com a instância e na instância
+tinha a aplicação que continha diversas imagens e fazia o site atualizar no S3.
