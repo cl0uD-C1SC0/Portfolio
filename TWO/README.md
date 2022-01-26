@@ -17,6 +17,8 @@
 * AWS CloudWatch
 * AWS CloudWatch Logs
 * AWS EventBridge Rules
+* AWS SNS
+* AWS IAM Access Analyzer
 #
 
 ```python
