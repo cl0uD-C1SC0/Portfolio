@@ -1,0 +1,46 @@
+Storage Classes Type:
+    # Frequently Accessed Objects
+        - Standard: The default storage class. Highly durable, highly available with millisecond access to data
+        
+        - REDUCED_REDUNDANCY: Similitar to STANDARD but with less durability because data is not replicated
+        as many times. Designed for noncritical, reproducible data 
+            ** NOT RECOMMENDED as it comes at a higher cost than STANDARD 
+    --------------------------------------------------------------------------------------------------------------------------------
+    # Infrenquently Accessed Objects 
+        - STANDARD_IA (Infrenquant Access): Highly durable, highly available, with milisecond latancy. Minimum
+        billable object size of 128KB and 30 day retention time. Lower fee than STANDARD but you are charged a retrieval/revivel fee 
+
+        - ONEZONE_IA: Highly durable with millisecond latancy. Minimum billable object size of 128KB and 30 day retention
+        time with a revivel free. Data is only stored in a single availability zone and therefore is less available than STANDARD_IA, however
+        the sotrage fee is also Lower
+
+    # Rarely Accessed Objects
+        - GLACIER: A Hihgly durable, cheap storage class designed for archive data where a portion needs to be retrievable
+        in minutes. Has a minimum billable storage time of 90 days; Data is not available in real-time and instead
+        must be restored.
+
+        - DEEP_ARCHIVE: A highly durable, extremely cheap storage class designed for archival or rarely accessed data. Has a 
+        minimum billable storage time of 180 days. Data is not available in real-time and instead can be restored (within hours)
+    --------------------------------------------------------------------------------------------------------------------------------
+    # Moving Data Between Storage Classes - Intelligent Tiering
+
+        -> INTELLIGENT_TIERING
+                    * Is a storage class that automatically moves data between frequent access tiers and infrequent access tiers
+                    * I.E. Objects that have not been accessed for 30 days are moved from frequent to infrenquent access
+                * Helps to optimise storage costs:
+                    -> Note: No retrieval/revival fee is charged for objects accessed in the infrequent access tiers but there is
+                    small charge per object for movement into this tier. 
+
+                * Objects MUST be larger than 128KB to be automatically transitioned between the tiers
+                * Perfect for long-lived data that has unpredictable access patterns.
+
+        -> Lifecycle Policies
+                    * Allow objects to transition between the storage classes
+                    * A set of rules that S3 applies to a group of objects
+                    * Transition Rules: Define when objects move to another storage class 
+                    * I.E. Move from STANDARD -> STANDARD_IA after 60 days 
+                    * Expiration Rules: Define when objects expire (i.e are deleted)
+                    * Ideal for objects that have a dfined lifecycle
+                            Exemple of Objects: Logs file.
+
+        
