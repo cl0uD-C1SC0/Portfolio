@@ -1,0 +1,28 @@
+#
+# Search for files in LINUX: 
+# find / -name nameoffile
+#
+#
+1. Necessário duas permissões para executar o EC2 Image Pipeline:
+    - EC2InstanceProfileForImageBuilder
+    - AmazonSSMManagedInstanceCore
+    - EC2InstanceProfileForImageBuilderECRContainerBuilds
+
+2. Quando for subir uma instancia, anexe a IAM Role com a permissão de:
+    - AmazonSSMManagedInstanceCore
+    E instale o SSM Agent antes!!!
+
+3. Se você quiser exportar os LOGS para um S3 adicione a seguinte permissão na ROLE do EC2 Image Pipeline 1.:
+    - AmazonS3FullAccess ou Permitindo PutObject e GetObject
+
+
+# Crie uma nova infrastructure configuration se precisar
+# Selecione a IAM Role com as Permissões do 1. Necessário...
+# Instance Type: Se você selecioner t3.medium por exemplo, instâncias abaixo da t3.medium não serão permitidas para usar esta AMI, somente acima ou = a t3.medium
+
+#
+# AUTOMAÇÃO:
+#
+
+Podemos adicionar um EventBridge para que quando seja criado uma Pipeline, ele execute essa Pipeline com Lambda
+Podemos adicionar um EventBridge para que quando a imagem seja criada, o EventBridge aciona um Lambda que pega o arn/id dessa imagem e cria uma instância a partir dela.
