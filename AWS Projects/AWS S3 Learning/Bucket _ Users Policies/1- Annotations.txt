@@ -1,0 +1,85 @@
+What Are bucket & User Policies 
+
+    * Bucket and user policies are policies, defined in JSOn, taht can be used to grant access on both buckets and objects
+    * Bucket policies are resource based
+    * User policies are user based and are managed in IAM 
+    * NOT APPLIED BY DEFAULT 
+
+Features:
+    * Can be used to grant permissions to AWS accounts (bucket policies only) or IAM users 
+    * Can grant very fine grained permissions 
+    * Can explicitly deny access 
+    * Can grant conditional permissions
+    * Declared in JSON 
+    * Limited to 20KB 
+
+Policy Elements: 
+    * A policy contains the following elements
+
+    * Principal: The account or user that is allowed access to the actions and resources specified in the statement
+    
+    * Effect: The effect taken when the user requests the action. Either "allow" or "deny" 
+
+    * Action: The list of permissions to allow or deny. 
+
+    * Resource: The bucket or object for which the access applies to. Specified as the Amazon Resource Name (ARN)
+
+    * SID: Not required for S3. Generally used as a description of the policy statement
+
+    * NB: User based policies do not have a principal in the statement because the principal is
+    the user whom executes the policy
+
+    Example of Policy: (Arquivo: Ex.json) <-----
+
+Resource: 
+        Provide access to a bucket:
+            -> arn:aws:s3:::stevespublicbucket
+        
+        Provide access to all objects in a bucket 
+            -> arn:aws:s3:::stevespublicbucket/*
+
+        Provide access to an object 
+            -> arn:aws:s3:::stevespublicbucket/public/example.jpeg 
+
+
+Conditions:
+        Condition are additional, optional policy elements that allow you to specify the conditions for
+        when a policy is in place.
+
+        Similar to adding an "if" statement to a policy
+
+        Examples:
+            -> Allow a user to "put" an object but only if the object is uploaded with the "public-read"
+            canned ACL granted
+
+            -> Allow a user to "put" an object but only if the object is uploaded with S3 encryption enabled
+
+            -> Allow a user to "delete" an object but only if they use multi-factor authentication to do so
+            -> Allow a user to "create" a bucket but only in a specified region
+
+        Example of Policy: (Arquivo: Condition.json) <-----
+
+    Consist of:
+
+            - A condition 
+            - Key/Value pair consisting of a "condition key" and a "value"
+
+                EX:
+                    "Condition": {
+                        "StringEquals": { <---- CONDITION 
+   Condition Key  ---->    "s3:x-amz-acl": [
+                              "public-read" <---- VALUE 
+                            ]
+                        }
+                    }
+------------------------------------
+Part 1 - How to create Bucket Policies:
+        - Go to Policy Generator, create a policy for S3 and attach to the S3 Permission Buck Policies
+
+---------------------------------------
+Part 2
+    - How to create User policies (Review this)
+    - How we can user conditions to expand the power of policies (Arquivo: Condition.json or NotEncryption.Json)
+    - How "deny" always overrides "allow"
+------------------------------------------------
+
