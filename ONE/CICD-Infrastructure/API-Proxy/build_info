@@ -1,0 +1,16 @@
+When we deployed this app quickly, we did a build spec inline in a CodeBuild job.
+
+
+I think this is the CodeDeploy one...
+
+version: 0.2
+phases:
+  install:
+    commands:
+      - pip install -r requirements.txt #install code dependencies
+  build:
+    commands:
+      - python tests_app.py -v #this will test the app works
+artifacts:
+  files:
+    - '**/*'
