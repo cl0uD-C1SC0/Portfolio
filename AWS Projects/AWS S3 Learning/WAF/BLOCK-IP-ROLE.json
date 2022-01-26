@@ -1,0 +1,27 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::account-id:user/YOURIAMUSERNAME"
+        },
+        "Action": "sts:AssumeRole"
+      },
+      {
+        "Effect": "Deny",
+        "Principal": {
+          "AWS": "arn:aws:iam::account-id:user/YOURIAMUSERNAME"
+        },
+        "Action": "sts:AssumeRole",
+        "Condition": {
+          "NotIpAddress": {
+            "aws:SourceIp": [
+              "103.15.250.0/24",
+              "12.148.72.0/23"
+            ]
+          }
+        }
+      }
+    ]
+  }
