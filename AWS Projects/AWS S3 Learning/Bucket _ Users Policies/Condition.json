@@ -1,0 +1,25 @@
+{
+    "Version": "2021-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowPutObjects",
+            "Principal": {
+                "AWS": "arn:aws:iam::3167351257351:user/Steve"
+            },
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::stevespublicbucket/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": [
+                        "public-read"
+                    ]
+                }
+            }
+        }
+    ]
+}
