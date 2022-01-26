@@ -13,6 +13,10 @@
 * AWS System Manager
 * AWS KMS
 * AWS Security Hub
+* AWS EC2 Image Builder
+* AWS CloudWatch
+* AWS CloudWatch Logs
+* AWS EventBridge Rules
 #
 
 ```python
