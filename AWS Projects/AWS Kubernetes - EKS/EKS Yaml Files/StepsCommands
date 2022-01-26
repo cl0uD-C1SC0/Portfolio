@@ -1,0 +1,23 @@
+# Create a cluster with yaml file
+    eksctl create cluster -f <name-of-file>.yaml
+
+# Apply Deploy changes:
+    kubectl apply -f <name-of-file-of-deployment>.yaml
+
+# Apply Service changes:
+    kubectl apply -f <name-of-file-of-service>.yaml
+
+----------------------------------------------
+# Stop the pods and nodes:
+
+    kubectl delete pods --all --force
+    kubectl delete services --all --force
+
+----------------------------------------------
+# View services, pods and nodes
+
+    kubectl get pods
+    kubectl get nodes
+    kubectl get services
+    
+-----------------------------------------------

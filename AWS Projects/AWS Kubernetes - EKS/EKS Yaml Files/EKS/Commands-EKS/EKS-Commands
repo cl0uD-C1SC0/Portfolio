@@ -1,0 +1,40 @@
+# Create Nodegroup
+
+- eksctl create nodegroup --config-file=<file.yaml>
+ex: eksctl create ndegroup -f notes.yaml 
+
+# Scale nodegroup
+
+- eksctl scale nodegroup --cluster=<name-of-cluster> --nodes=<numero> --name=<nome-do-scale>
+ex: eksctl scale nodegroup --cluster=EKS-cluster --nodes=5 --name=<n22>
+
+# Verify credentials after creating a cluster
+ 
+- cat ~/.kube/config
+
+------------------
+# Commands in eksctl.io
+# Commands of EKSCTL.
+# Kubernets from AWS
+# Before creating. Logging into a aws configure command credentials
+
+# Creating a cluster
+eksctl create cluster 
+
+# Create a cluster by yaml file:
+eksctl create cluster -f cluster.yaml
+
+# Delete a cluster:
+eksctl delete cluster -f cluster.yaml
+eksctl delete cluster --name <name-of-cluster>
+
+# So if you have a config file with correct cloudWatch.clusterLogging.enableTypes:
+eksctl create cluster --config-file=<name>
+
+# Enable all types of logs:
+eksctl utils update-cluster-logging --enable-types all
+
+
+
+
+

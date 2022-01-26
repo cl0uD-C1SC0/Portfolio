@@ -1,0 +1,87 @@
+# STEP 01
+    # Install the EKSCTL:
+        curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+        sudo mv /tmp/eksctl /usr/local/bin
+        eksctl version
+
+# STEP 02
+    # Install the KUBECTL
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+        # If error:
+        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+        chmod +x kubectl
+        mkdir -p ~/.local/bin/kubectl
+        mv ./kubectl ~/.local/bin/kubectl
+# STEP 03
+    # Install Docker:
+        yum install -y docker
+        systemctl start docker
+        systemctl status docker
+        # Change permission for ec2-user
+        sudo groupadd docker
+        sudo usermod -a -G docker ec2-user
+        newgrp docker
+        # If error:
+        "WARNING: Error loading config file: /home/user/.docker/config.json -
+        stat /home/user/.docker/config.json: permission denied"
+
+        sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+        sudo chmod g+rwx "$HOME/.docker" -R  
+
+    # Configure Docker to start on Boot
+        sudo systemctl enable docker.service
+        sudo systemctl enable containerd.service
+
+# STEP 04
+    #8.2 Configurações do IAM:
+	 
+			Crie um usuário e adicione as seguintes permissões:
+                AdministratorAccess
+                AmazonEKSClusterPolicy
+                AmazonEC2ContainerRgistryFullAccess
+                AmazonEKSServicePolicy
+
+			Crie uma Função e adicione as seguintes permissões:
+				Função para EKS Easy:
+                AmazonEKSClusterPolicy
+                AmazonEKSServicePolicy
+                AmazonEKS_CNI_Policy
+
+			Crie uma Função e adicione as seguintes permissões:
+				Função para Nós (Nodes): 
+
+            BUILDING A DOCKERFILE WITH PACKAGE:
+
+		        FROM golang
+		        WORKDIR /app
+		        COPY . .
+		        CMD [“go”,”run”,”/app/shop.go”]
+		        EXPOSE 80
+
+# STEP 05
+        8.3 - Configurações do Kubernets modo Easy
+
+	1 – Vá ao console da AWS e procure pelo serviço EKS;
+           	2 – Crie e configure um novo cluster;
+           	3 – Espere a criação do Cluster;
+           	4 – Configure um grupo de Nodes (Nós);
+           	5 – Espere a criação do grupo de Nodes. Enquanto isso, execute uma instância;
+           	6 – Entre via SSH na Instância e instale:
+                ·        Kubectl (Instale no modo root e ec2-user);
+                ·        Eksctl (Instale no modo ec2-user);
+                ·        Git;
+                ·        Docker (Reiniciar e, ou Iniciar a aplicação);
+                ·        Go.
+            7 – Configure um arquivo Dockerfile;
+            8 – Crie a imagem rodando o comando: Docker build -t <image-name>;
+            9 – Jogue a imagem no repositório do ECR;
+            10 – Configure arquivos de deploy e services;
+                ·        Arquivos de exemplos no GitHub;
+            11 – Inicie o Deploy da aplicação e o Service também;
+                ·        Kubectl apply -f deploy.yaml
+                ·        Kubectl apply -f servisse.yaml
+            12 – Enquanto você aguarda o deploy, define regras de entrada no security group para acessar o ELB;
+            13 – Teste a aplicação.
+
+            

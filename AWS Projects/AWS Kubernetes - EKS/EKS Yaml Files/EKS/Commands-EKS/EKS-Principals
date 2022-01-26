@@ -1,0 +1,13 @@
+# Comandos principais do EKS Clusters para poder gerenciar sua aplicação
+
+
+- Criar uma User/ROLE no IAM:
+    * Criar um USER no IAM com permissões (AmazonEKSClusterPolicy, AmazonEKSServicePolicy)
+    * Gere credentials e guarde-as. 
+    * 
+
+- Criar um EKS + NodeGroups
+    * Primeiro passo é configurar um arquivo .yaml (exemplo: firstcluster.yaml)
+    * Segundo passo, no arquivo, adicione o nodegroup e suas características.
+    * Terceiro passo, execute este comando:
+        eksctl create cluster
