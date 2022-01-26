@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Resource": "*",
+            "Action": [
+                "athena:*",
+                "ec2:*",
+                "glue:*",
+                "s3:*",
+                "cloud9:*",
+                "cloudshell:*"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1636036245433",
+    "Statement": [
+        {
+            "Sid": "Stmt1636036241825",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::247333580160:root"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::mod-where-in-the-wor-playerbucket-13z0eevgx2q59/*"
+        }
+    ]
+}
