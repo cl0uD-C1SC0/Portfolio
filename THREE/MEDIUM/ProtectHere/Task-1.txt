@@ -1,0 +1,15 @@
+#
+#
+#
+TASK:
+    - Vá para os Task Definitions
+    - Selecione o Task definition que tem que mudar...
+    - Crie uma nova revisão dela.
+    - Clique em container
+    - Desça até a página de Logging ou Logs, algo assim
+    - Preencha com os parametros:
+        KEY awslogs-group VALUE: /ex/path/log
+        KEY awslogs-region us-east-1
+        KEY awslogs-stream-prefix jam
+    - Atualize o serviço.
+
