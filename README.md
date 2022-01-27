@@ -44,11 +44,11 @@ def lambda_handler(event, context):
 # Minhas conquistas:
 * 🥇 Representante da Modalidade #53 Computação em Nuvem AWS - Pelo Estado de São Paulo ☁️
 * 🥇 Medalha de ... na Olimpíada do Conhecimento - SENAI :closed_book:
-* 🏅 Linux Essentials English Certification :penguin: 
-* 🏅 Linux Unhatched Portuguese Certification :penguin: 
-* 🏅 Cisco Introduction to Networks English Certification :large_blue_circle: 
-* 🏅 Cisco Packet Tracer English Certification :large_blue_circle: 
-* 🏅 AWS Graduate English Certification :cloud: 
+* 🏅 Linux Essentials Certification :penguin: 
+* 🏅 Linux Unhatched Certification :penguin: 
+* 🏅 Cisco Introduction to Networks Certification :large_blue_circle: 
+* 🏅 Cisco Packet Tracer Certification :large_blue_circle: 
+* 🏅 AWS Graduate Certification :cloud: 
 # Certificados Adversos: (Falta terminar os cursos depois da olímpiada)
 * 🏅 Amazon ECS & Fargate - Udemy :x:
 * 🏅 Amazon EKS Kubernetes - Udemy :x:
