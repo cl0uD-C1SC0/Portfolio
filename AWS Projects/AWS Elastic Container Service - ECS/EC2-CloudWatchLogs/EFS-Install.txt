@@ -1,0 +1,28 @@
+# Aprenda a instalar e manipular arquivos no EFS
+
+- sudo yum install -y amazon-efs-utils
+
+# se for no Ubuntu:
+
+= sudo apt-get install nfs-common
+
+# Crie uma pasta
+
+- sudo mkdir efs
+
+# Monte:
+
+sudo mount -t efs <efs-id>:/ efs
+
+# ou
+
+sudo mount -t efs -o tls <fs-id>:/ efs
+
+docker attach
+docker build -t server .
+docker images
+docker images ls
+
+
+aws s3 cp /var/log/yum.log s3://<s3id>
+aws s3api create-bucket --bucket <name>

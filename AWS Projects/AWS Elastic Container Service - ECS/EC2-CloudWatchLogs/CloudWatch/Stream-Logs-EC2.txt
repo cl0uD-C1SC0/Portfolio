@@ -1,0 +1,56 @@
+# CloudWatchLogs from EC2
+
+    * IAM Role for EC2:
+            - CloudWatchFullAccess  
+
+    * Install CloudWatch agent on EC2 to push the log files you want.
+            - sudo yum update -y 
+            - sudo yum install -y awslogs
+            * Edit: /etc/awslogs/awslogs.conf
+            * Edit Region: /etc/awslogs/awscli.conf
+            - sudo service awslogs start
+            - sudo systemctl start awslogsd
+            * Amazon Linux 2 ENABLE: sudo systemctl enable awslogsd.service
+            * Check the fails: /var/log/awslogs.log
+------------------------------------------------------------------
+#!/bin/bash
+sudo yum update -y
+sudo yum install -y docker
+sudo yum install -y git
+sudo yum install -y httpd
+sudo yum install -y php
+sudo systemctl enable httpd
+sudo systemctl start httpd
+sudo systemctl restart docker
+sudo systemctl enable docker
+sudo sed 's/Listen 80/Listen 8008/g' -i /etc/httpd/conf/httpd.conf
+sudo sed 's/\/var\/www\/html/\/var\/www\/srvweb02/g' -i /etc/httpd/conf/httpd.conf
+echo "Successfull Instalations!"
+
+[/var/log/httpd/access_log]
+datetime_format = %b %d %H:%M:%S
+file = /var/log/httpd/access_log
+buffer_duration = 5000
+log_stream_name = {instance_id}
+initial_position = start_of_file
+log_group_name = /var/log/httpd/access_log  
+---------------------------------------------
+Parameter Store tutorial:
+
+# Commands:
+
+        aws ssm get-parameters --names 
+
+
+
+--------------------------------
+IAM Athena:
+        Create a new
+        Frequency: Run on demand
+
+
+
+        AthenaStartingQuery
+        AthenaGetQuery
+        AthenaGetQueryResults
+        GlueGetTable

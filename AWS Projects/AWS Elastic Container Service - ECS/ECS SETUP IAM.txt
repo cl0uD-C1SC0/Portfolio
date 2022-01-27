@@ -1,0 +1,37 @@
+# IAM SETUP
+    * EC2Role
+        Allows the ECS agent on the EC2 hosts to communiciate with ECS and ECR
+    
+    * ECSRole
+        role which authorizes ECS to manage resources on your behalf
+
+    * ECSTaskExecutionRole
+        role attached to the ECS tasks
+
+
+    * AutoScalingRole
+        used to allow AWS Autoscalin to inspect stats and adjust scaleable targets
+
+--------------------
+Go to IAM
+    Roles
+        Create Roles
+            Elastic Container Service
+        permission:    >    EC2 Role for Elastic Container Service 
+                                Name: EC2-InstanceRole
+    Roles
+        Create Roles
+            Elastic Container Service    
+        permission:    >    Elastic Container Service 
+                                Name: ECS-Role
+    Roles
+        Create Roles
+            Elastic Container Service
+                    Elastic Container Service Autoscale
+                                Name: ECS-AutoScalingRole 
+    Roles
+        Create Roles
+            Elastic Container Service Task 
+                                AmazonECSTaskExecutionRolePolicy
+                                        Name: ECS-TaskExecutionRole
+                                        
