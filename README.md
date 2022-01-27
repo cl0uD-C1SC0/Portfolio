@@ -1,4 +1,4 @@
-<h1> BEM VINDO AO MEU REPO/PORTFOLIO - AWS CLOUD ☁️ </h1>
+<h1> Welcome to my PORTFOLIO - AWS CLOUD ☁️ </h1>
 
 
 <p align="center">
@@ -15,12 +15,12 @@ def lambda_handler(event, context):
     user = "user"
     value = bool(user)
     if value == True:
-        print("Bem vindo caro Usuário ao meu Repositório de aprendizado! ")
-        print("Também utilizo este repositório como portfólio!, ")
-        print("Sinta-se a vontade para dar uma olhada caro Recrutador!")
-        return "Usuer has been detected on my Repository!"
+        print("Welcome User to my portfolio of learn! ")
+        print("Feel free to give a dear Recruiter!")
+        print("Enjoy it!")
+        return "User has been detected on my Repository!"
     else:
-        print("Oh céus! O Usuário deixou o nosso repositório! Espero que ele tenha gostado!")
+        print("Oh god! The User has been left from my Repository! I hope he liked it!")
         return "User has been leave from my Repository!"
 ```
 <p align="center">
@@ -36,12 +36,12 @@ def lambda_handler(event, context):
 * AWS Migration (App2Container, DMS, CloudEndure, ...)
 * AWS Cognito (Userpool, IdentityPool, ...)
 * AWS Config
-# Certificações Internacionais:
+# International Certifications:
 * AWS Cloud Practitioner - Em Breve
 * AWS Solutions Architect - Em Breve
 * Terraform Associate - Em Breve
 * CKA Kubernetes - Em Breve
-# Minhas conquistas:
+# My achivements:
 * 🥇 Representante da Modalidade #53 Computação em Nuvem AWS - Pelo Estado de São Paulo ☁️
 * 🥇 Medalha de ... na Olimpíada do Conhecimento - SENAI :closed_book:
 * 🏅 Linux Essentials Certification :penguin: 
@@ -49,7 +49,7 @@ def lambda_handler(event, context):
 * 🏅 Cisco Introduction to Networks Certification :large_blue_circle: 
 * 🏅 Cisco Packet Tracer Certification :large_blue_circle: 
 * 🏅 AWS Graduate Certification :cloud: 
-# Certificados Adversos: (Falta terminar os cursos depois da olímpiada)
+# Certifications: (Falta terminar os cursos depois da olímpiada)
 * 🏅 Amazon ECS & Fargate - Udemy :x:
 * 🏅 Amazon EKS Kubernetes - Udemy :x:
 * 🏅 AWS Advanced Networking - Udemy :x:
