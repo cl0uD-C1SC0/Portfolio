@@ -1,0 +1,14 @@
+#
+#
+#
+Adicione a instancia um IAM que permita SSM
+De um reboot na instancia
+Espere alguns minutos
+Vá para o SSM (Session Manager)
+Inicie uma sessão com a instância na lista
+Quando iniciar digite:
+    sudo su - ec2-user
+    sudo yum install -y polkit
+    sudo systemctl restart sshd
+
+    Valide a task.

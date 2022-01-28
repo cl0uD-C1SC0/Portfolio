@@ -1,0 +1,12 @@
+#
+#
+#
+Vá para o RDS novamente
+Clique em Modify
+Procure pela opção: Connectivity
+Habilite a checkbox - Data API
+Apply Imediately
+Vá no LambdaFunction e troque a Role para AdminRole
+Teste a função e espere os resultados:
+
+EX: 3.49
