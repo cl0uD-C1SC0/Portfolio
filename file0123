@@ -1,0 +1,13 @@
+SELECT DISTINCT _garbage_file_extract FROM customers c
+JOIN rentals r ON r.customerid = c.id
+JOIN unicorns u on u.id = r.unicornid
+JOIN reviews rw ON rw.rentalid = r.id
+WHERE c.name like 'Michael Bolton'
+
+
+SELECT column FROM "database"."table-name"  WHERE  name = 'Jon' and infection = 'dangerously-bad'
+
+SELECT column FROM "database".table-name" WHERE user = 'jon' GROUP BY name
+
+SELECT column FROM "database"."table-name" ORDER BY id
+
