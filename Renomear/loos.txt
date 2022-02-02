@@ -11,3 +11,9 @@
 	-- IAM Role (Um iam role com muitas permissões)
 	-- KMS KEY (kms key que não permite o usuário descriptografar)
 	
+	
+	
+	---:
+	IAM Role is set to allow other accounts to AssumeRole through Trust Relation.
+	S3 and KMS are Resource Based Policies that allow other accounts to use or manage individual resources.
+	
