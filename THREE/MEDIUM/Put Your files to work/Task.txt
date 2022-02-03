@@ -1,0 +1,30 @@
+#
+#
+#
+Procure as duas instâncias que precisaram serem compartilhadas.
+
+crie uma conexão entre as duas:
+
+VIA VPC PEERING:
+    EX: IPS(VPC-01 10.0.0.0/16, VPC-02 10.1.0.0/16)
+    Crie um VPC Peering entre as duas VPCS:
+        - Source VPC-01
+        - Accepter VPC-02
+    
+    Vá na Route Table Publica das duas VPCS
+        RT PUBLIC VPC 01:
+            ROUTE:
+                10.1.0.0/16 > endpointvpc-peering
+        
+        RT PUBLIC VPC 02:
+            ROUTE: 
+                10.0.0.0/16 > endpointvpc-peering
+
+OBS: ambas vpcs devem ter conexão com a internet.
+
+OBS: CONCATENAR VALOR:
+    cat file1.txt >> file2.txt
+
+OBS: UTILIZE O >> E NÃO >
+
+VIA TRANSIT GATEWAY:
