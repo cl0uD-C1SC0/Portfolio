@@ -1,0 +1,36 @@
+{
+    "cluster": "roomWhereItHappens",
+    "serviceName": "ecs",
+    "taskDefinition": "traefik",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:447891293061:targetgroup/TG-80/79fdea6738c61fd7",
+            "containerName": "traefik",
+            "containerPort": 80
+        },
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:447891293061:targetgroup/TG-8080/1414151763d50fa0",
+            "containerName": "traefik",
+            "containerPort": 8080
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-07110246696031508",
+                "subnet-05a299e683935088c"
+            ],
+            "securityGroups": [
+                "sg-0d9b24152a7025ef5"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    },
+    "healthCheckGracePeriodSeconds": 30,
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    }
+}
