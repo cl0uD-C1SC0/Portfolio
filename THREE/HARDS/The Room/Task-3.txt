@@ -24,3 +24,6 @@ OBS:
     Nome do container: traefik
     Imagem: traefik:v2.5
 
+aws ecs create-service \
+     --cli-input-json file://service-bluegreen.json \
+     --region us-east-1
