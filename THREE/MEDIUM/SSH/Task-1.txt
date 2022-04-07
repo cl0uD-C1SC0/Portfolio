@@ -1,4 +1,0 @@
-#
-#
-#
-Habilite o SSH para todos no security group da instancia.

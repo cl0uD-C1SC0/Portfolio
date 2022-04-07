@@ -1,7 +1,0 @@
-#
-#
-#
-Vá na instância
-Clique em networking
-Clique na subnet dela e e depois procure pela route table associada a subnet
-Adicione uma rota para o IGW
