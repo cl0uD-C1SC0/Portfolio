@@ -1,5 +1,0 @@
-git rev-parse HEAD
-git rev-parse --short HEAD
-git log -1
-git log | head -n 1
-git log --pretty=oneline --decorate
