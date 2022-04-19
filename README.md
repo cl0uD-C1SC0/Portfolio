@@ -37,20 +37,21 @@ def lambda_handler(event, context):
 * AWS Cognito (Userpool, IdentityPool, ...)
 * AWS Config
 # International Certifications:
-* AWS Cloud Practitioner - Em Breve
+* AWS Cloud Practitioner - ✔️
 * AWS Solutions Architect - Em Breve
 * Terraform Associate - Em Breve
 * CKA Kubernetes - Em Breve
 # My achivements:
 * 🥇 Representante da Modalidade #53 Computação em Nuvem AWS - Pelo Estado de São Paulo ☁️
-* 🥇 Medalha de ... na Olimpíada do Conhecimento - SENAI :closed_book:
+* 🥇 Medalha de 🥈 na Olimpíada do Conhecimento - SENAI :closed_book:
 * 🏅 Linux Essentials Certification :penguin: 
 * 🏅 Linux Unhatched Certification :penguin: 
 * 🏅 Cisco Introduction to Networks Certification :large_blue_circle: 
 * 🏅 Cisco Packet Tracer Certification :large_blue_circle: 
-* 🏅 AWS Graduate Certification :cloud: 
+* 🏅 AWS Graduate Certification :cloud:
+* 🥇 AWS Certified Cloud Practitioner 
 # Certifications: (Falta terminar os cursos depois da olímpiada)
-* 🏅 Amazon ECS & Fargate - Udemy :x:
+* 🏅 Amazon ECS & Fargate - Udemy ✔️
 * 🏅 Amazon EKS Kubernetes - Udemy :x:
 * 🏅 AWS Advanced Networking - Udemy :x:
 * 🏅 AWS CDK Fundamentals - Udemy :x:
