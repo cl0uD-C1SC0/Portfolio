@@ -49,10 +49,10 @@ def lambda_handler(event, context):
 * 🏅 Cisco Introduction to Networks Certification :large_blue_circle: 
 * 🏅 Cisco Packet Tracer Certification :large_blue_circle: 
 * 🏅 AWS Graduate Certification :cloud:
-* 🥇 AWS Certified Cloud Practitioner 
-# Certifications: (Falta terminar os cursos depois da olímpiada)
+* 🥇 AWS Certified Cloud Practitioner
+* 🥇 GCP Google Associate Cloud Engineer 
+# Certifications: 
 * 🏅 Amazon ECS & Fargate - Udemy ✔️
-* 🏅 Amazon EKS Kubernetes - Udemy :x:
+* 🏅 Amazon EKS Kubernetes - Udemy ✔️
 * 🏅 AWS Advanced Networking - Udemy :x:
-* 🏅 AWS CDK Fundamentals - Udemy :x:
-* 🏅 Terraform on AWS - IaC DevOps - Udemy :x:
+* 🏅 Terraform on AWS - IaC DevOps - Udemy :✔️
